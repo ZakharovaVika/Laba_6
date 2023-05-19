@@ -13,7 +13,7 @@ def array_variants(arr, max_sum):
         raise ValueError("Максимальная сумма не может быть меньше суммы положительных элементов")
 
     variants = []
-    negative_indices = [i for i in range(1, len(arr), 2) if arr[i] < 0]
+    negative_indices = [i for i in range(0, len(arr), 2) if arr[i] < 0]
 
     for i in range(len(negative_indices) + 1):
         for combination in itertools.combinations(negative_indices, i):
