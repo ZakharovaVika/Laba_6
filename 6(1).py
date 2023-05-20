@@ -5,19 +5,19 @@ n=10
 arr=[0]*n
 for i in range (n):
     arr[i]=randint(-100, 0)
+
+
+# Функция-генератор, которая возвращает все возможные варианты массива, заменяя отрицательные числа на нечетных позициях их модулями
 def array_variants(arr):
-    variants = []
     negative_indices = [i for i in range(1, len(arr), 2) if arr[i] < 0]
 
     for i in range(len(negative_indices) + 1):
         for combination in itertools.combinations(negative_indices, i):
             for index in combination:
                 arr[index] = abs(arr[index])
-            variants.append(arr[:])
+            yield arr[:]  # yield генерирует каждый вариант по очереди
             for index in combination:
                 arr[index] = -abs(arr[index])  # возвращаем массив к исходному состоянию
-    return variants
-
 
 
 
